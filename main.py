@@ -18,6 +18,13 @@ def check_login(login):
         return True
     return False
 
+def check_login1(login):
+    z = re.match('[a-z]([a-z0-9.-]{0,18}[a-z0-9])?$', login, re.IGNORECASE)
+    if z:
+        print(z)
+        return True
+    return False
+
 class TestLogin(unittest.TestCase):
 
     def test_one_symbol_login(self):
@@ -31,6 +38,18 @@ class TestLogin(unittest.TestCase):
 
     def test_too_long_login(self):
         self.assertEqual(check_login("toolongloginheretoolongloginhere"), False)
+
+    def test_one_symbol_login1(self):
+        self.assertEqual(check_login1("q"), True)
+
+    def test_ordinary_login1(self):
+        self.assertEqual(check_login1("laosdfa8"), True)
+
+    def test_login_with_allow_symbols1(self):
+        self.assertEqual(check_login1("lSGs-d7.8"), True)
+
+    def test_too_long_login1(self):
+        self.assertEqual(check_login1("toolongloginheretoolongloginhere"), False)
 
 
 
