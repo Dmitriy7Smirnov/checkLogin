@@ -12,11 +12,9 @@ import unittest
 """
 
 def check_login(login):
-    z = re.match('^([a-zA-Z0-9])$', login)
-    z1 = re.match('^([a-zA-Z])([a-zA-Z0-9.-]){0,18}([a-zA-Z0-9])$', login)
-    if z or z1:
+    z = re.match('[a-zA-Z]([a-zA-Z0-9.-]{0,18}[a-zA-Z0-9])?$', login)
+    if z:
         print(z)
-        print(z1)
         return True
     return False
 
